@@ -1,0 +1,100 @@
+syntax="proto2";
+
+service Balance{
+  rpc SendOp (SolicitudSend) returns (RespuestaSend) {}
+  rpc Operacion (SolicitudOperacion) returns (RespuestaOperacion) {}
+
+  rpc Create (SolicitudCreate) returns (RespuestaCreate) {}
+  rpc Read (SolicitudRead) returns (stream RespuestaRead) {}
+  rpc Write (SolicitudWrite) returns (RespuestaWrite) {}
+
+  rpc Create2 (SolicitudCreate2) returns (RespuestaCreate2) {}
+  rpc Read2 (SolicitudRead2) returns (stream RespuestaRead2) {}
+  rpc Write2 (SolicitudWrite2) returns (RespuestaWrite2) {}
+}
+
+message SolicitudSend {
+  required int32 op = 1;
+}
+
+message RespuestaSend {
+  optional string result = 1;
+}
+
+message SolicitudOperacion {
+  required int32 op = 1;
+}
+
+message RespuestaOperacion {
+  optional string result = 1;
+}
+
+// El mensaje de solicitud contiene el nombre del archivo a crear
+message SolicitudCreate {
+  required string nombre = 1;
+  required string ruta = 2;
+}
+
+//El mensaje de respuesta contiene un mensaje de confirmación
+message RespuestaCreate {
+  optional string conf = 1;
+}
+
+// El mensaje de solicitud contiene el nombre del archivo a leer
+message SolicitudRead {
+  required string nombre = 1;
+  required string ruta = 2;
+}
+
+//El mensaje de respuesta contiene el contenido del archivo
+message RespuestaRead {
+  optional string contenido = 1;
+}
+
+// El mensaje de solicitud contiene el nombre del archivo a editar y el contenido
+message SolicitudWrite {
+  required string nombre = 1;
+  required string contenido = 2;
+  required string ruta = 3;
+}
+
+//El mensaje de respuesta contiene un mensaje de confirmación
+message RespuestaWrite {
+  optional string conf = 1;
+}
+
+/////////////////////////////////////////////////////
+
+// El mensaje de solicitud contiene el nombre del archivo a crear
+message SolicitudCreate2 {
+  required string nombre = 1;
+  required string ruta = 2;
+}
+
+//El mensaje de respuesta contiene un mensaje de confirmación
+message RespuestaCreate2 {
+  optional string conf = 1;
+}
+
+// El mensaje de solicitud contiene el nombre del archivo a leer
+message SolicitudRead2 {
+  required string nombre = 1;
+  required string ruta = 2;
+}
+
+//El mensaje de respuesta contiene el contenido del archivo
+message RespuestaRead2 {
+  optional string contenido = 1;
+}
+
+// El mensaje de solicitud contiene el nombre del archivo a editar y el contenido
+message SolicitudWrite2 {
+  required string nombre = 1;
+  required string contenido = 2;
+  required string ruta = 3;
+}
+
+//El mensaje de respuesta contiene un mensaje de confirmación
+message RespuestaWrite2 {
+  optional string conf = 1;
+}
